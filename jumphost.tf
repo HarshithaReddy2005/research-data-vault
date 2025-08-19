@@ -18,7 +18,7 @@ resource "azurerm_windows_virtual_machine" "jumphost" {
   size                  = "Standard_B1s"
 
   admin_username = "azureuser"
-  admin_password = "Password1234!" # Sample password; for real projects, use secrets!
+  admin_password = "Password1234!" # Sample password; use secrets in real projects
 
   os_disk {
     caching              = "ReadWrite"
