@@ -17,8 +17,8 @@ resource "azurerm_windows_virtual_machine" "jumphost" {
   network_interface_ids = [azurerm_network_interface.jumphost_nic.id]
   size                  = "Standard_B1s"
 
-  admin_username        = "azureuser"
-  admin_password        = "Password1234!"  # Sample password; for real projects, use secrets!
+  admin_username = "azureuser"
+  admin_password = "Password1234!" # Sample password; for real projects, use secrets!
 
   os_disk {
     caching              = "ReadWrite"
