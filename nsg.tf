@@ -1,3 +1,4 @@
+# NSG for Backend Subnet
 resource "azurerm_network_security_group" "nsg_backend" {
   name                = "nsg-backend"
   location            = azurerm_resource_group.rg.location
@@ -14,6 +15,7 @@ resource "azurerm_network_security_group" "nsg_backend" {
     source_port_range          = "*"
     destination_port_range     = "443"
   }
+
   security_rule {
     name                       = "Allow-PE-DNS"
     direction                  = "Outbound"
@@ -25,6 +27,7 @@ resource "azurerm_network_security_group" "nsg_backend" {
     source_port_range          = "*"
     destination_port_range     = "53"
   }
+
   security_rule {
     name                       = "Deny-Internet-All"
     direction                  = "Outbound"
@@ -38,6 +41,7 @@ resource "azurerm_network_security_group" "nsg_backend" {
   }
 }
 
+# NSG for Jumphost Subnet
 resource "azurerm_network_security_group" "nsg_jumphost" {
   name                = "nsg-jumphost"
   location            = azurerm_resource_group.rg.location
@@ -54,14 +58,28 @@ resource "azurerm_network_security_group" "nsg_jumphost" {
     source_port_range          = "*"
     destination_port_range     = "3389"
   }
+
+  security_rule {
+    name                       = "Deny-Internet-All"
+    direction                  = "Outbound"
+    access                     = "Deny"
+    priority                   = 300
+    protocol                   = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "Internet"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+  }
 }
 
+# NSG for HPC Subnet
 resource "azurerm_network_security_group" "nsg_hpc" {
   name                = "nsg-hpc"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
 
+# Associate NSGs to Subnets
 resource "azurerm_subnet_network_security_group_association" "backend_assoc" {
   subnet_id                 = azurerm_subnet.sn_backend.id
   network_security_group_id = azurerm_network_security_group.nsg_backend.id
