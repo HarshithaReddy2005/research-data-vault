@@ -1,3 +1,11 @@
+resource "azurerm_public_ip" "jumphost_public_ip" {
+  name                = "jumphost-public-ip"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
+
 resource "azurerm_network_interface" "jumphost_nic" {
   name                = "jumphost-nic"
   location            = azurerm_resource_group.rg.location
@@ -7,6 +15,7 @@ resource "azurerm_network_interface" "jumphost_nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.sn_jumphost.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.jumphost_public_ip.id
   }
 }
 
@@ -18,7 +27,7 @@ resource "azurerm_windows_virtual_machine" "jumphost" {
   size                  = "Standard_B1s"
 
   admin_username = "azureuser"
-  admin_password = "Password1234!" # Sample password; use secrets in real projects
+  admin_password = "Password1234!" # CHANGE in production
 
   os_disk {
     caching              = "ReadWrite"
