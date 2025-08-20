@@ -3,3 +3,6 @@ output "vnet_name" { value = azurerm_virtual_network.vnet.name }
 output "storage_account_name" { value = azurerm_storage_account.stg.name }
 output "key_vault_name" { value = azurerm_key_vault.kv.name }
 output "log_analytics_name" { value = azurerm_log_analytics_workspace.law.name }
+output "jumphost_public_ip" {
+  value = azurerm_public_ip.jumphost_public_ip.ip_address
+}
