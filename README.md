@@ -110,16 +110,7 @@ vnet_name = "vnet-research"
 
 ## Stretch Demo: Jumphost Outbound Block & Logging
 
-### Outbound Internet Block
-
-- **Tested from jumphost-vm:**
-Test-NetConnection -ComputerName www.google.com -Port 80
-- Result:  
-  ![PowerShell Failure]("C:/Users/harsh/Pictures/Screenshots/Screenshot 2025-08-23 105941.png")
-
-> **Connection fails, proving outbound block is enforced by NSG.**
-
-### Log Analytics - Jumphost Activity
+ 
  
  
 
@@ -147,9 +138,7 @@ All resources assigned:
 
 ---
 
-## License
-
-MIT License
+ 
 
 ---
 
