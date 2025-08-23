@@ -115,26 +115,19 @@ vnet_name = "vnet-research"
 - **Tested from jumphost-vm:**
 Test-NetConnection -ComputerName www.google.com -Port 80
 - Result:  
-  ![PowerShell Failure](./screenshots/jumphost_blocked.png)
+  ![PowerShell Failure]("C:/Users/harsh/Pictures/Screenshots/Screenshot 2025-08-23 105941.png")
 
 > **Connection fails, proving outbound block is enforced by NSG.**
 
 ### Log Analytics - Jumphost Activity
-
-- **Diagnostics sent to Log Analytics workspace:**
-- Example (no results found yet? This is normal due to log delay, config, or inactivity; screenshot included for process):
-
-  ![Log Analytics](./screenshots/loganalytics_jumphost.png)
-
-- **Explain this in documentation** if logs are delayed (“Diagnostic settings configured; logs may take 15+ minutes to appear or may require activity such as logins or reboots”).
-
----
+ 
+ 
 
 ## Tags & Naming
 
 All resources assigned:
 - `Project = Genomics`
-- `Owner = <YourName>`
+- `Owner = <Harshitha>`
 - `Env = PoC`
 
 ---
